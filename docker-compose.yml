@@ -1,0 +1,21 @@
+
+services:
+  cuda-12.6-cudnn-py3.10:
+    build: ./cont
+    container_name: cuda-12.6-cudnn-py3.10
+    volumes:
+      - ./cont/Code:/app
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    dns:
+      - 8.8.8.8  
+      - 8.8.4.4  

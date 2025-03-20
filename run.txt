@@ -1,0 +1,19 @@
+
+sudo docker compose build
+
+# Run only this for API
+service_name
+
+# To watch the API 
+sudo docker compose logs -f
+
+sudo sudo docker-compose run -it container_name
+
+# For Terminal
+sudo docker exec -it container_name /bin/bash
+sudo docker-compose down
+
+sudo docker restart container_name
+
+# To clear Docker memory ( Delete all Docker images!!)
+sudo docker system prune
