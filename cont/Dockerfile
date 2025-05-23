@@ -23,7 +23,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Set Python 3.10 as the default
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+# Set Python 3.10 as the default
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1 && \
+    ln -s /usr/bin/python3 /usr/bin/python  # <-- add this line
 
 WORKDIR /app
 
