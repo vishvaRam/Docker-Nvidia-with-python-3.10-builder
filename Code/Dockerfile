@@ -1,5 +1,5 @@
 # Use NVIDIA CUDA base image with cuDNN
-FROM nvidia/cuda:12.6.3-cudnn-devel-ubuntu24.04
+FROM nvidia/cuda:12.9.0-cudnn-devel-ubuntu24.04
 
 # Set environment variables to disable interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive \

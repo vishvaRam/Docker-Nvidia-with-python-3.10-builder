@@ -1,8 +1,8 @@
 
 services:
-  cuda-12.6:
+  cuda-12.9:
     build: ./Code
-    container_name: cuda-12.6
+    container_name: cuda-12.9
     volumes:
       - ./Code:/app
 
