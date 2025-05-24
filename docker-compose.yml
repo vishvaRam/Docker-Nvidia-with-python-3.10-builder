@@ -1,10 +1,10 @@
 
 services:
-  cuda-12.6-cudnn-py3.10:
-    build: ./cont
-    container_name: cuda-12.6-cudnn-py3.10
+  cuda-12.6:
+    build: ./Code
+    container_name: cuda-12.6
     volumes:
-      - ./cont/Code:/app
+      - ./Code:/app
 
     deploy:
       resources:

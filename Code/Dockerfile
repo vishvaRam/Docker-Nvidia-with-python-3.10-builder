@@ -1,5 +1,5 @@
 # Use NVIDIA CUDA base image with cuDNN
-FROM   nvidia/cuda:12.6.2-cudnn-devel-ubuntu24.04
+FROM nvidia/cuda:12.6.3-cudnn-devel-ubuntu24.04
 
 # Set environment variables to disable interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -19,17 +19,18 @@ RUN apt-get update && \
     python3-setuptools \
     python3-wheel \
     curl && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1 && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Set Python 3.10 as the default
-# Set Python 3.10 as the default
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1 && \
-    ln -s /usr/bin/python3 /usr/bin/python  # <-- add this line
+RUN curl -LsSf https://astral.sh/uv/install.sh  | sh && \
+    cp $HOME/.local/bin/uv /usr/local/bin/uv && \
+    cp $HOME/.local/bin/uvx /usr/local/bin/uvx
 
-WORKDIR /app
+ENV PATH="/usr/local/bin:${PATH}"
+ENV UV_LINK_MODE=copy
 
-COPY Code .
+RUN uv --version
 
-# Set default command
-CMD ["python3","main.py"]
+# RUN uv pip install -r requirements.txt --system
